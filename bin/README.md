@@ -139,5 +139,5 @@ Este repositório é parte de um projeto educacional, mas contribuições são s
 
 ## 9. Contato
 
-Desenvolvido por [**Carlos Moroni**](https://github.com/carlosmoronisud)
+Desenvolvido por [**Eduardo**](https://github.com/EduardoTosta)
 Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
