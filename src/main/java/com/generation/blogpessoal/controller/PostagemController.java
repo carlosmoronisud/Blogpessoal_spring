@@ -54,14 +54,11 @@ public class PostagemController {
 		}
 		
 		
-		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O tema não existe", null);
-		
-		
-		
-		
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O tema não existe", null);		
 		
 		
 	}
+	
 	@PutMapping
 	public ResponseEntity<Postagem> put(@Valid @RequestBody Postagem postagem) {
 	    return postagemRepository.findById(postagem.getId())

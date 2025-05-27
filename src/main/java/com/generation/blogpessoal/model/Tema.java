@@ -21,11 +21,7 @@ public class Tema {
 
 	@OneToMany(mappedBy = "tema", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE) // Define o lado 1:N
 	private List<Postagem> postagem;
-	
-	
-
-	
-	
+		
 	
 	
 	@Id // Primary Key
@@ -34,7 +30,7 @@ public class Tema {
 	
 	@Column(length = 100)
 	@NotBlank( message = "O atributo é obrigatório")
-	@Size(min = 10, max = 1000, message = "O atributo deve ter no mínimo 10 e no maximo 100 caracteres")
+	@Size(min = 1, max = 1000, message = "O atributo deve ter no mínimo 10 e no maximo 100 caracteres")
 	private String descricao;
 
 	public Long getId() {
