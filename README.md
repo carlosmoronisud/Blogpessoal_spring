@@ -169,7 +169,7 @@ Para executar os códigos localmente, você precisará:
 
 ### 7.1. Importando o Projeto
 
-1. Clone o repositório do Projeto [Blog Pessoal](https://github.com/rafaelq80/blogpessoal_spring_t82) dentro da pasta do *Workspace* do STS
+1. Clone o repositório do Projeto [Blog Pessoal](https://github.com/carlosmoronisud/Blogpessoal_spring) dentro da pasta do *Workspace* do STS
 
 ```bash
 git clone https://github.com/rafaelq80/blogpessoal_spring_t82.git
@@ -239,7 +239,7 @@ Você pode executar os testes de duas formas:
 
 <br />
 
-Este repositório é parte de um projeto educacional, mas contribuições são sempre bem-vindas! Caso tenha sugestões, correções ou melhorias, fique à vontade para:
+Este repositório é parte de um projeto educacional, desenvolvido pelo meu professor [**Rafael Queiroz**](https://github.com/rafaelq80), mas contribuições são sempre bem-vindas! Caso tenha sugestões, correções ou melhorias, fique à vontade para:
 
 - Criar uma **issue**
 - Enviar um **pull request**
@@ -251,5 +251,5 @@ Este repositório é parte de um projeto educacional, mas contribuições são s
 
 <br />
 
-Desenvolvido por [**Rafael**](https://github.com/rafaelq80)
+Desenvolvido por [**Carlos Moroni**](https://github.com/carlosmoronisud)
 Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
