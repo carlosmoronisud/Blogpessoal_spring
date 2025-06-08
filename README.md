@@ -1,69 +1,74 @@
-# Projeto Blog Pessoal - Backend com Spring Boot
+# Personal Blog Project - Spring Boot Backend
 
 <br />
 
 <div align="center">
-    <img src="https://i.imgur.com/w8tTOuT.png" title="source: imgur.com" /> 
+    <img src="https://i.imgur.com/w8tTOuT.png" title="source: imgur.com" alt="Personal Blog Project Banner" /> 
 </div>
 
 <br />
 
 <div align="center">
-  <img src="https://img.shields.io/github/languages/top/carlosmoronisud/Blogpessoal_spring?style=flat-square" />
-  <img src="https://img.shields.io/github/repo-size/carlosmoronisud/Blogpessoal_spring?style=flat-square" />
-  <img src="https://img.shields.io/github/languages/count/carlosmoronisud/Blogpessoal_spring?style=flat-square" />
-  <img src="https://img.shields.io/github/last-commit/carlosmoronisud/Blogpessoal_spring?style=flat-square" />
-  <img src="https://img.shields.io/github/issues/carlosmoronisud/Blogpessoal_spring?style=flat-square" />
-  <img src="https://img.shields.io/github/issues-pr/carlosmoronisud/Blogpessoal_spring?style=flat-square" />
-  <img src="https://img.shields.io/badge/status-construção-yellow" alt="Status: Em Construção">
-
+  <img src="https://img.shields.io/github/languages/top/carlosmoronisud/Blogpessoal_spring?style=flat-square" alt="Top Language" />
+  <img src="https://img.shields.io/github/repo-size/carlosmoronisud/Blogpessoal_spring?style=flat-square" alt="Repo Size" />
+  <img src="https://img.shields.io/github/languages/count/carlosmoronisud/Blogpessoal_spring?style=flat-square" alt="Language Count" />
+  <img src="https://img.shields.io/github/last-commit/carlosmoronisud/Blogpessoal_spring?style=flat-square" alt="Last Commit" />
+  <img src="https://img.shields.io/github/issues/carlosmoronisud/Blogpessoal_spring?style=flat-square" alt="Open Issues" />
+  <img src="https://img.shields.io/github/issues-pr/carlosmoronisud/Blogpessoal_spring?style=flat-square" alt="Open Pull Requests" />
+  <img src="https://img.shields.io/badge/status-under%20construction-yellow" alt="Status: Under Construction">
 </div>
 
 <br />
 
-## 1. Descrição
+---
+
+## 1. Project Overview
 
 <br />
 
-O **Blog Pessoal** é uma aplicação que permite que usuários publiquem, editem e visualizem postagens relacionadas a temas variados, de forma organizada e segura. Este projeto foi desenvolvido com fins educacionais, simulando uma aplicação real de blog para praticar conceitos de API REST com Java e Spring Boot.
+The **Personal Blog** is an application that enables users to publish, edit, and view posts on various topics in an organized and secure manner. This project was developed for educational purposes, simulating a real-world blog application to practice **REST API** concepts with Java and Spring Boot.
 
-Entre os principais recursos que um blog pessoal oferece, destacam-se:
+Key features offered by this personal blog include:
 
-1. Criação, edição e exclusão de postagens
-2. Associação de postagens a temas específicos
-3. Cadastro e autenticação de usuários
-4. Visualização de postagens por tema ou usuário
-5. Controle de acesso a operações sensíveis
-
-<br />
-
-## 2. Sobre esta API
+1.  Creating, editing, and deleting posts
+2.  Associating posts with specific themes
+3.  User registration and authentication
+4.  Viewing posts by theme or user
+5.  Access control for sensitive operations
 
 <br />
 
-A API do Blog Pessoal foi desenvolvida utilizando **Java** e o **framework Spring**, seguindo os princípios da Arquitetura MVC e REST. Ela oferece endpoints para o gerenciamento dos recursos **Usuário**, **Postagem** e **Tema**, permitindo a interação entre os usuários e os conteúdos publicados.
+---
+
+## 2. About This API
 
 <br />
 
-### 2.1. Principais funcionalidades da API:
+The Personal Blog API was developed using **Java** and the **Spring framework**, adhering to **MVC** and **REST Architecture** principles. It provides endpoints for managing **User**, **Post**, and **Theme** resources, facilitating interaction between users and published content.
 
 <br />
 
-1. Consulta, cadastro, login e atualização dos dados de usuários
-2. Consulta, criação e gerenciamento de temas para classificar postagens
-3. Criação, edição, listagem e remoção de postagens
-4. Associação de postagens a temas e autores
-5. Autenticação via token JWT para segurança nas requisições
+### 2.1. Key API Features:
 
 <br />
 
-## 3. Diagrama de Classes
+1.  Querying, registering, logging in, and updating user data
+2.  Querying, creating, and managing themes to classify posts
+3.  Creating, editing, listing, and removing posts
+4.  Associating posts with themes and authors
+5.  Authentication via **JWT token** for secure requests
 
 <br />
 
-O **Diagrama de Classes** é um modelo visual usado na programação orientada a objetos para representar a estrutura de um sistema. Ele exibe classes, atributos, métodos e os relacionamentos entre elas, como associações, heranças e dependências.
+---
 
-Esse diagrama ajuda a planejar e entender a arquitetura do sistema, mostrando como as entidades interagem e se conectam. É amplamente utilizado nas fases de design e documentação de projetos.
+## 3. Class Diagram
+
+<br />
+
+The **Class Diagram** is a visual model used in object-oriented programming to represent a system's structure. It displays classes, attributes, methods, and the relationships between them, such as associations, inheritances, and dependencies.
+
+This diagram aids in planning and understanding the system's architecture, showing how entities interact and connect. It's widely used in the design and documentation phases of projects.
 
 <br />
 
@@ -90,25 +95,20 @@ class Usuario {
   - foto : String
   - postagens : List<Postagem>
 }
-Tema --> Postagem : classifica
-Usuario --> Postagem : cria
+Tema --> Postagem : classifies
+Usuario --> Postagem : creates
 
 ```
-
 <br />
-
-## 4. Diagrama Entidade-Relacionamento (DER)
-
+4. Entity-Relationship Diagram (ERD)
 <br />
-
-O **DER (Diagrama Entidade-Relacionamento)** do projeto **Blog Pessoal** representa de forma visual como os dados estão organizados no banco de dados relacional e como as entidades se relacionam entre si.
-
+The ERD (Entity-Relationship Diagram) for the Personal Blog project visually represents how data is organized in the relational database and how entities relate to each other.
 <br />
 
 ```mermaid
 erDiagram
-    tb_usuarios ||--o{ tb_postagens : cria
-    tb_temas ||--o{ tb_postagens : classifica
+    tb_usuarios ||--o{ tb_postagens : creates
+    tb_temas ||--o{ tb_postagens : classifies
     tb_usuarios {
         bigint id PK
         varchar(255) nome
@@ -131,125 +131,100 @@ erDiagram
 ```
 
 <br />
-
-## 5. Tecnologias utilizadas
-
+5. Technologies Used
 <br />
 
-| Item                          | Descrição       |
-| ----------------------------- | --------------- |
-| **Servidor**                  | Tomcat          |
-| **Linguagem de programação**  | Java            |
-| **Framework**                 | Spring Boot     |
-| **ORM**                       | JPA + Hibernate |
-| **Banco de dados Relacional** | MySQL           |
-| **Segurança**                 | Spring Security |
-| **Autenticação**              | JWT             |
-| **Testes automatizados**      | JUnit           |
-| **Documentação**              | SpringDoc       |
+| Item | Description |
+|---|---|
+| Server | Tomcat |
+| Programming Language | Java |
+| Framework | Spring Boot |
+| ORM | JPA + Hibernate |
+| Relational Database | MySQL |
+| Security | Spring Security |
+| Authentication | JWT |
+| Automated Tests | JUnit |
+| Documentation | SpringDoc |
 
 <br />
-
-## 6. Requisitos
-
+6. Requirements
 <br />
 
-Para executar os códigos localmente, você precisará:
-
-- [Java JDK 17+](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-- Banco de dados [MySQL](https://dev.mysql.com/downloads/)
-- [STS](https://spring.io/tools)
-- [Insomnia](https://insomnia.rest/download) ou [Postman](https://www.postman.com/)
-
+To run the code locally, you will need:
+ * Java JDK 17+
+ * MySQL Database
+ * STS (Spring Tool Suite)
+ * Insomnia or Postman
+   
+<br />
+7. How to Run the Project in STS
 <br />
 
-## 7. Como Executar o projeto no STS
+7.1. Importing the Project
+ * Clone the Personal Blog repository into your STS Workspace folder.
+   
+   git clone
+   [https://github.com/carlosmoronisud/Blogpessoal_spring.git]
+   (https://github.com/carlosmoronisud/Blogpessoal_spring.git)
 
+   Note: The original git clone link provided was for a different repository (rafaelq80/blogpessoal_spring_t82).
+   I've updated it to match your repository name carlosmoronisud/Blogpessoal_spring for consistency. Please double-check if this is correct.
+   
+ * Open STS and select the Workspace folder where you cloned the project repository.
+ * In the top menu of STS, click: File 🡲 Import...
+ * In the Import window, select: General 🡲 Existing Projects into Workspace and click Next.
+ * In the Import Projects window, under Select root directory, click Browse... and select the Workspace folder where you cloned the project repository.
+ * STS will automatically recognize the project.
+ * Select the Personal Blog Project under Projects and click Finish to complete the import.
+ * 
 <br />
-
-### 7.1. Importando o Projeto
-
-1. Clone o repositório do Projeto [Blog Pessoal](https://github.com/carlosmoronisud/Blogpessoal_spring) dentro da pasta do *Workspace* do STS
-
-```bash
-git clone https://github.com/rafaelq80/blogpessoal_spring_t82.git
-```
-
-2. **Abra o STS** e selecione a pasta do *Workspace* onde você clonou o repositório do projeto
-3. No menu superior do STS, clique na opção: **File 🡲 Import...**
-4. Na janela **Import**, selecione a opção: **General 🡲 Existing Projects into Workspace** e clique no botão **Next**
-5. Na janela **Import Projects**, no item **Select root directory**, clique no botão **Browse...** e selecione a pasta do Workspace onde você clonou o repositório do projeto
-6. O STS reconhecerá o projeto automaticamente
-7. Marque o Projeto Blog Pessoal no item **Projects** e clique no botão **Finish** para concluir a importação
-
-<br />
-
-### 7.2. Executando o projeto
-
-1. Na Guia **Boot Dashboard**, localize o  **Projeto Blog Pessoal**
-2. Selecione o **Projeto Blog Pessoal**
-3. Clique no botão **Start or Restart** <img src="https://i.imgur.com/wdoZqWP.png" title="source: imgur.com" width="4%"/> para iniciar a aplicação
-4. Caso seja perguntado se você deseja autorizar o acesso ao projeto via rede, clique no botão **Permitir Acesso**
-5. Acompanhe a inicialização do projeto no console do STS
-6. Verifique se o banco de dados `db_blogpessoal` foi criado corretamente e se as tabelas foram geradas automaticamente.
-7. Utilize o [Insomnia](https://insomnia.rest/) ou o [Postman](https://www.postman.com/) para testar os endpoints.
+7.2. Running the Project
+ * In the Boot Dashboard tab, locate the Personal Blog Project.
+ * Select the Personal Blog Project.
+ * Click the Start or Restart button <img src="https://i.imgur.com/wdoZqWP.png" title="source: imgur.com" width="4%"/> to start the application.
+ * If prompted to authorize network access for the project, click Allow Access.
+ * Monitor the project's initialization in the STS console.
+ * Verify that the db_blogpessoal database was created correctly and that tables were automatically generated.
+ * Use Insomnia or Postman to test the endpoints.
 
 <br />
 
 > [!TIP]
->
-> Ao acessar a URL `http://localhost:8080` em seu navegador, a interface do Swagger será carregada automaticamente, permitindo a visualização e a interação com os endpoints da API, bem como a consulta dos modelos de dados utilizados.
-
+> By accessing the URL http://localhost:8080 in your browser, the Swagger UI interface will automatically load, allowing you to view and interact with the API endpoints, as well as consult the data models used.
+> 
 <br />
-
-## 8. Como Executar os Testes no STS
-
-### 8.1. **Localizando as Classes de Teste**
-
-- Na **Package Explorer**, navegue até a Source Folder `src/test/java`
-- Localize as classes que contém os testes (classes cujo nome terminam com a palavra **Test**)
-
+8. How to Run Tests in STS
+8.1. Locating Test Classes
+ * In the Package Explorer, navigate to the src/test/java Source Folder.
+ * Locate the classes containing tests (classes whose names end with the word Test).
 <br />
-
-### 8.2. **Executando os Testes**
-
-Você pode executar os testes de duas formas:
-
-#### 👉 Opção 1: Executar uma classe de teste específica
-
-- Clique com o botão direito sobre a classe de teste
-- Selecione a opção `Run As > JUnit Test`
-
-#### 👉 Opção 2: Executar todos os testes do projeto
-
-- Clique com o botão direito sobre a pasta do projeto
-- Selecione: `Run As > JUnit test` 
-
+8.2. Executing Tests
+You can run tests in two ways:
+👉 Option 1: Run a specific test class
+ * Right-click on the test class.
+ * Select Run As > JUnit Test.
+👉 Option 2: Run all project tests
+ * Right-click on the project folder.
+ * Select Run As > JUnit test.
 <br />
-
-### 8.3. **Verificando os Resultados**
-
-- Ao executar os testes, na **Package Explorer**, será exibida a guia **JUnit**  mostrando os resultados dos testes
-- Os testes que falharem serão destacados em vermelho, e os bem-sucedidos em verde
-- Clique nos testes para visualizar os detalhes ou mensagens de erro no item **Failure Trace**
-
+8.3. Verifying Results
+ * When tests are executed, the JUnit tab will appear in the Package Explorer, showing the test results.
+ * Failing tests will be highlighted in red, and successful ones in green.
+ * Click on tests to view details or error messages in the Failure Trace section.
 <br />
-
-## 9. Contribuição
-
+9. Contribution
 <br />
-
-Este repositório é parte de um projeto educacional, desenvolvido pelo meu professor [**Rafael Queiroz**](https://github.com/rafaelq80), mas contribuições são sempre bem-vindas! Caso tenha sugestões, correções ou melhorias, fique à vontade para:
-
-- Criar uma **issue**
-- Enviar um **pull request**
-- Compartilhar com colegas que estejam aprendendo Java!
-
+This repository is part of an educational project developed by my professor Rafael Queiroz, but contributions are always welcome! If you have suggestions, corrections, or improvements, feel free to:
+ * Create an issue.
+ * Submit a pull request.
+ * Share with colleagues who are learning Java!
 <br />
-
-##  10. Contato
-
+10. Contact
 <br />
+Developed by Carlos Moroni
+For questions, suggestions, or collaborations, please reach out via GitHub or open an issue!
 
-Desenvolvido por [**Carlos Moroni**](https://github.com/carlosmoronisud)
-Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
+---
+
+
+---
