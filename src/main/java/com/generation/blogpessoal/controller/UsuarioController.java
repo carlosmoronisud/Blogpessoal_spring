@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.model.UsuarioLogin;
+import com.generation.blogpessoal.model.dtos.GoogleLoginRequest;
 import com.generation.blogpessoal.service.UsuarioService;
+
 
 import jakarta.validation.Valid;
 
@@ -63,5 +65,13 @@ public class UsuarioController {
 				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
+	
+	// --- NOVO ENDPOINT: Login com Google ---
+    @PostMapping("/logar/google")
+    public ResponseEntity<UsuarioLogin> authenticateGoogle(@RequestBody GoogleLoginRequest googleLoginRequest) {
+        return usuarioService.autenticarUsuarioGoogle(googleLoginRequest.getIdToken())
+                .map(response -> ResponseEntity.status(HttpStatus.OK).body(response))
+                .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+    }
 	
 }

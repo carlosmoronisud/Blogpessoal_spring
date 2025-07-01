@@ -2,10 +2,12 @@ package com.generation.blogpessoal.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -14,8 +16,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank; // Manter para nome e usuario
+import jakarta.validation.constraints.Size; // Manter para foto
 
 @Entity
 @Table(name = "tb_usuarios")
@@ -33,18 +35,35 @@ public class Usuario {
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
 	private String usuario;
 
-	@NotBlank(message = "O Atributo Senha é Obrigatório!")
-	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
+	// ANTES:
+	// @NotBlank(message = "O Atributo Senha é Obrigatório!")
+	// @Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
+	// AGORA:
+	// A senha se tornar um campo opcional na model, e o serviço cadastrarUsuario e atualizarUsuario 
+	// serao responsáveis por validar a senha apenas se o provedorAutenticacao for "LOCAL".
+	@Column(nullable = true) // <-- Adicione esta linha
 	private String senha;
 
 	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String foto;
-
+	
+	private String provedorAutenticacao;
+	private String idProvedorExterno;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
+	@JsonIgnore
 	private List<Postagem> postagem;
 
-	/* Insira os Getters and Setters */
+	// ... Getters e Setters ...
+
+	public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
+	}
 
 	public Long getId() {
 		return this.id;
@@ -85,13 +104,21 @@ public class Usuario {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-
-	public List<Postagem> getPostagem() {
-		return this.postagem;
+	
+	
+	public String getProvedorAutenticacao() {
+		return provedorAutenticacao;
 	}
 
-	public void setPostagem(List<Postagem> postagem) {
-		this.postagem = postagem;
+	public void setProvedorAutenticacao(String provedorAutenticacao) {
+		this.provedorAutenticacao = provedorAutenticacao;
 	}
 
+	public String getIdProvedorExterno() {
+		return idProvedorExterno;
+	}
+
+	public void setIdProvedorExterno(String idProvedorExterno) {
+		this.idProvedorExterno = idProvedorExterno;
+	}
 }

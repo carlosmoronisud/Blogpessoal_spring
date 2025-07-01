@@ -13,6 +13,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 
+
+
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
@@ -21,6 +24,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		
 
 		Optional<Usuario> usuario = usuarioRepository.findByUsuario(username);
 

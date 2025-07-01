@@ -14,15 +14,16 @@ public class UserDetailsImpl implements UserDetails {
 
 	private String username;
 	private String password;
+	
 	private List<GrantedAuthority> authorities;
 
-	public UserDetailsImpl(Usuario user) {
-		this.username = user.getUsuario();
-		this.password = user.getSenha();
+	public UserDetailsImpl(Usuario usuario) {
+		
+		this.username = usuario.getUsuario();
+		this.password = usuario.getSenha();
 	}
 
-	public UserDetailsImpl() {	}
-
+	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
