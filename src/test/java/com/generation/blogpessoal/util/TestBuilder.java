@@ -16,7 +16,7 @@ public class TestBuilder {
 	}
 	
 	public static UsuarioLogin criarUsuarioLogin(String email, String senha) {
-        UsuarioLogin usuarioLogin = new UsuarioLogin();
+        UsuarioLogin usuarioLogin = new UsuarioLogin(senha, senha);
         usuarioLogin.setId(null);
         usuarioLogin.setNome("");
         usuarioLogin.setUsuario(email);
