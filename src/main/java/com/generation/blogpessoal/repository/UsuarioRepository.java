@@ -8,7 +8,6 @@ import com.generation.blogpessoal.model.Usuario;
 
 
 
-
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
    
     

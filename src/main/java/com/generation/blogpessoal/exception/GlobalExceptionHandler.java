@@ -7,6 +7,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.server.ResponseStatusException;
 import jakarta.servlet.http.HttpServletRequest; // Importe esta classe se decidir usar
 
@@ -56,6 +57,18 @@ public class GlobalExceptionHandler {
         // Em um ambiente de produção, você não deve expor a mensagem da exceção genérica diretamente.
         // Para debug em ambiente de desenvolvimento, você pode adicionar:
         // problemDetail.setProperty("debugMessage", ex.getMessage()); 
+        return problemDetail;
+    }
+    
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ProblemDetail handleTypeMismatch(MethodArgumentTypeMismatchException ex, HttpServletRequest request) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        problemDetail.setTitle("Parâmetro inválido");
+        problemDetail.setDetail("O parâmetro '" + ex.getName() + "' deve ser do tipo " + ex.getRequiredType().getSimpleName());
+        problemDetail.setType(URI.create("https://spring.io/problems/invalid-parameter"));
+        problemDetail.setProperty("timestamp", Instant.now());
+        problemDetail.setProperty("path", request.getRequestURI());
+
         return problemDetail;
     }
 }

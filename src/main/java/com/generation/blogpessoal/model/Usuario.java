@@ -35,35 +35,19 @@ public class Usuario {
 	@Email(message = "O Atributo Usuário deve ser um email válido!")
 	private String usuario;
 
-	// ANTES:
-	// @NotBlank(message = "O Atributo Senha é Obrigatório!")
-	// @Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
-	// AGORA:
-	// A senha se tornar um campo opcional na model, e o serviço cadastrarUsuario e atualizarUsuario 
-	// serao responsáveis por validar a senha apenas se o provedorAutenticacao for "LOCAL".
-	@Column(nullable = true) // <-- Adicione esta linha
+	@NotBlank(message = "O Atributo Senha é Obrigatório!")
+	@Size(min = 8, message = "A Senha deve ter no mínimo 8 caracteres")
 	private String senha;
 
 	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
 	private String foto;
-	
-	private String provedorAutenticacao;
-	private String idProvedorExterno;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties("usuario")
 	@JsonIgnore
 	private List<Postagem> postagem;
 
-	// ... Getters e Setters ...
-
-	public List<Postagem> getPostagem() {
-		return postagem;
-	}
-
-	public void setPostagem(List<Postagem> postagem) {
-		this.postagem = postagem;
-	}
+	/* Insira os Getters and Setters */
 
 	public Long getId() {
 		return this.id;
@@ -104,21 +88,13 @@ public class Usuario {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-	
-	public String getProvedorAutenticacao() {
-		return provedorAutenticacao;
+
+	public List<Postagem> getPostagem() {
+		return this.postagem;
 	}
 
-	public void setProvedorAutenticacao(String provedorAutenticacao) {
-		this.provedorAutenticacao = provedorAutenticacao;
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
 	}
 
-	public String getIdProvedorExterno() {
-		return idProvedorExterno;
-	}
-
-	public void setIdProvedorExterno(String idProvedorExterno) {
-		this.idProvedorExterno = idProvedorExterno;
-	}
 }

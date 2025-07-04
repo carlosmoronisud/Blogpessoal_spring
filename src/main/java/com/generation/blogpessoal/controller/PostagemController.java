@@ -1,14 +1,7 @@
-// src/main/java/com/generation/blogpessoal/controller/PostagemController.java
 package com.generation.blogpessoal.controller;
 
 import java.util.List;
 import java.util.Optional;
-
-// IMPORTS CORRETOS PARA PAGINAÇÃO DO SPRING DATA JPA
-import org.springframework.data.domain.Page; // Importar do pacote correto
-import org.springframework.data.domain.Pageable; // Importar do pacote correto
-import org.springframework.data.domain.Sort; // Importar do pacote correto (para Sort.Direction)
-import org.springframework.data.web.PageableDefault;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,21 +35,15 @@ public class PostagemController {
 	@Autowired
 	private TemaRepository temaRepository;
 
-	@GetMapping // Mantém a mesma URL, mas agora aceita parâmetros de paginação
-	// NOVO: O tipo de retorno deve ser Page<Postagem>
-    public ResponseEntity<Page<Postagem>> getAll(
-        @PageableDefault(size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable
-    ) {
-        // O findAll(Pageable) retorna diretamente um Page<Postagem>
-        Page<Postagem> postagensPage = postagemRepository.findAll(pageable);
+	@GetMapping
+	public ResponseEntity<List<Postagem>> getAll() {
 
-        // Se a página estiver vazia, retorna NO_CONTENT
-        if (postagensPage.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // 204 No Content se não houver postagens na página
-        }
+		/**
+		 * O Método executará a consulta: SELECT * FROM tb_postagens;
+		 */
+		return ResponseEntity.ok(postagemRepository.findAll());
 
-        return ResponseEntity.ok(postagensPage); // Retorna a página de postagens
-    }
+	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Postagem> getById(@PathVariable Long id) {
@@ -66,7 +53,7 @@ public class PostagemController {
 		 * interrogação representa o valor inserido no parâmetro id do método getById
 		 */
 		return postagemRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
-				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Postagem não encontrada!"));
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
 	@GetMapping("/titulo/{titulo}")
@@ -84,7 +71,8 @@ public class PostagemController {
 	@PostMapping
 	public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem) {
 
-		/** * Verifica se o tema existe antes de persistir a postagem no Banco de dados
+		/** 
+		 * Verifica se o tema existe antes de persistir a postagem no Banco de dados
 		 * */
 		if (temaRepository.existsById(postagem.getTema().getId())) {
 
@@ -94,10 +82,13 @@ public class PostagemController {
 			 * inseridos nos respectivos atributos do objeto postagem, parâmetro do método
 			 * post.
 			 */
+			
+			postagem.setId(null);
 			return ResponseEntity.status(HttpStatus.CREATED).body(postagemRepository.save(postagem));
 		}
 		
-		/** * Caso o tema não exista, retorna um Bad Request informando que o tema não existe
+		/** 
+		 * Caso o tema não exista, retorna um Bad Request informando que o tema não existe
 		 * */
 		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O Tema não existe!", null);
 	}
@@ -105,21 +96,43 @@ public class PostagemController {
 	@PutMapping
 	public ResponseEntity<Postagem> put(@Valid @RequestBody Postagem postagem) {
 
-		// Verifica se o ID da postagem existe
+		/**
+		 * Verifica se o id é nulo. Se for nulo, retorna o HTTP Status 400 - BAD_REQUEST
+		 */
+		if (postagem.getId() == null)
+			return ResponseEntity.badRequest().build();
+
+		/**
+		 * Antes de atualizar, verifica se a postagem existe. Se existir, atualiza
+		 */
 		if (postagemRepository.existsById(postagem.getId())) {
-			// Verifica se o tema da postagem existe
-			if (temaRepository.existsById(postagem.getTema().getId())) {
+			
+			/** 
+			 * Verifica se o tema existe antes de atualizar a postagem no Banco de dados
+			 * */
+			if (temaRepository.existsById(postagem.getTema().getId()))
+				/**
+				 * O Método executará a consulta: UPDATE tb_postagens SET titulo = ?, texto = ?,
+				 * data = ? WHERE id = ?; As interrogações representam os valores inseridos nos
+				 * respectivos atributos do objeto postagem, parâmetro do método post.
+				 */
 				return ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(postagem));
-			} else {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O Tema não existe!", null);
-			}
-		} else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Postagem não encontrada para atualização!", null);
+		
+			/** 
+			 * Caso o tema não exista, retorna um Bad Request informando que o tema não existe
+			 * */
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O Tema não existe!", null);
+			
 		}
+		/**
+		 * Se a postagem não existir, retorna o HTTP Status 404 - NOT_FOUND
+		 */
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
 	}
 
 	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT) // Esta anotação já define o status HTTP
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 
 		/**
@@ -132,7 +145,7 @@ public class PostagemController {
 		 * Status 404 - NOT_FOUND
 		 */
 		if (postagem.isEmpty())
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Postagem não encontrada para exclusão!");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 
 		/**
 		 * Caso contrário, o Método executará a consulta: DELETE FROM tb_postagens WHERE

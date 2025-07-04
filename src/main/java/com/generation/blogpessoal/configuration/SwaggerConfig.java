@@ -1,6 +1,10 @@
-// Exemplo de SwaggerConfig com SpringDoc OpenAPI 2.x
 package com.generation.blogpessoal.configuration;
 
+import org.springdoc.core.customizers.OpenApiCustomizer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -8,52 +12,68 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
-import org.springdoc.core.customizers.OpenApiCustomizer; // Import correto
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 
 @Configuration
 public class SwaggerConfig {
-
-    @Bean
-    public OpenAPI springBlogPessoalOpenAPI() {
+	 
+	@Bean
+    OpenAPI springBlogPessoalOpenAPI() {
         return new OpenAPI()
             .info(new Info()
                 .title("Projeto Blog Pessoal")
                 .description("Projeto Blog Pessoal - Generation Brasil")
                 .version("v0.0.1")
                 .license(new License()
-                    .name("Generation Brasil")
-                    .url("https://brazil.generation.org/"))
+                    .name("Carlos Moroni")
+                    .url("https://www.linkedin.com/in/carlosmoronigarcia/"))
                 .contact(new Contact()
-                    .name("João da Silva")
-                    .url("https://github.com/joaodasilva") // Coloque seu link do GitHub
-                    .email("joao.silva@email.com"))) // Coloque seu email
+                    .name("Generation Brasil")
+                    .url("https://portfolio-carlosgarcias-projects.vercel.app/")
+                    .email("carlosmoronisud@gmail.com")))
             .externalDocs(new ExternalDocumentation()
-                .description("Github do Projeto")
-                .url("https://github.com/joaodasilva/blogpessoal")); // Coloque o link do seu projeto no GitHub
+                .description("Github")
+                .url("https://github.com/carlosmoronisud"))
+            .components(new Components()
+                    .addSecuritySchemes("jwt_auth", createSecurityScheme()))
+                .addSecurityItem(new SecurityRequirement().addList("jwt_auth"));
     }
 
-    @Bean
-    public OpenApiCustomizer customerGlobalHeaderOpenApiCustomiser() {
-        return openApi -> {
-            openApi.getPaths().values().forEach(pathItem -> pathItem.readOperations()
-                .forEach(operation -> {
-                    ApiResponses apiResponses = operation.getResponses();
 
-                    apiResponses.addApiResponse("200", createApiResponse("Sucesso!"));
-                    apiResponses.addApiResponse("201", createApiResponse("Objeto Persistido!"));
-                    apiResponses.addApiResponse("204", createApiResponse("Objeto Excluído!"));
-                    apiResponses.addApiResponse("400", createApiResponse("Erro na Requisição!"));
-                    apiResponses.addApiResponse("401", createApiResponse("Acesso Não Autorizado!"));
-                    apiResponses.addApiResponse("403", createApiResponse("Acesso Proibido!"));
-                    apiResponses.addApiResponse("404", createApiResponse("Objeto Não Encontrado!"));
-                    apiResponses.addApiResponse("500", createApiResponse("Erro Interno do Servidor!"));
-                }));
-        };
-    }
+	@Bean
+	OpenApiCustomizer customerGlobalHeaderOpenApiCustomiser() {
 
-    private ApiResponse createApiResponse(String message) {
-        return new ApiResponse().description(message);
-    }
+		return openApi -> {
+			openApi.getPaths().values().forEach(pathItem -> pathItem.readOperations().forEach(operation -> {
+
+				ApiResponses apiResponses = operation.getResponses();
+
+				apiResponses.addApiResponse("200", createApiResponse("Sucesso!"));
+				apiResponses.addApiResponse("201", createApiResponse("Objeto Persistido!"));
+				apiResponses.addApiResponse("204", createApiResponse("Objeto Excluído!"));
+				apiResponses.addApiResponse("400", createApiResponse("Erro na Requisição!"));
+				apiResponses.addApiResponse("401", createApiResponse("Acesso Não Autorizado!"));
+				apiResponses.addApiResponse("403", createApiResponse("Acesso Proibido!"));
+				apiResponses.addApiResponse("404", createApiResponse("Objeto Não Encontrado!"));
+				apiResponses.addApiResponse("500", createApiResponse("Erro na Aplicação!"));
+
+			}));
+		};
+	}
+
+	private ApiResponse createApiResponse(String message) {
+
+		return new ApiResponse().description(message);
+
+	}
+	
+	private SecurityScheme createSecurityScheme() {
+	    return new SecurityScheme()
+	        .name("jwt_auth")
+	        .type(SecurityScheme.Type.HTTP)
+	        .scheme("bearer")
+	        .bearerFormat("JWT")
+	        .description("Insira apenas o token JWT (a palavra 'Bearer' será adicionada automaticamente)");
+	}
 }
