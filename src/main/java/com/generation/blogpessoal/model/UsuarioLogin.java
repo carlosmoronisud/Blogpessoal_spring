@@ -56,5 +56,10 @@ public class UsuarioLogin {
 	public void setToken(String token) {
 		this.token = token;
 	}
+	public UsuarioLogin(String usuario, String senha) {
+	    this.usuario = usuario;
+	    this.senha = senha;
+	}
+
 
 }

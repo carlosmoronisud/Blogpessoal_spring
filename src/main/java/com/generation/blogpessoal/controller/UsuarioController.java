@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.generation.blogpessoal.model.CredenciaisDTO;
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.model.UsuarioLogin;
 import com.generation.blogpessoal.service.UsuarioService;
@@ -59,10 +60,15 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/logar")
-	public ResponseEntity<UsuarioLogin> autenticar(@Valid @RequestBody Optional<UsuarioLogin> usuarioLogin) {
-		return usuarioService.autenticarUsuario(usuarioLogin)
-				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
-				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	public ResponseEntity<UsuarioLogin> autenticar(@Valid @RequestBody CredenciaisDTO credenciais) {
+	    Optional<UsuarioLogin> usuarioLogin = usuarioService.autenticarUsuario(
+	        Optional.of(new UsuarioLogin(credenciais.getUsuario(), credenciais.getSenha()))
+	    );
+
+	    return usuarioLogin
+	        .map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
+	        .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
+
 	
 }
