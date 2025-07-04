@@ -1,64 +1,41 @@
-# Projeto Blog Pessoal - Backend com Spring Boot
-
+Projeto Blog Pessoal - Backend com Spring Boot
+<br /> <div align="center"> <img src="https://i.imgur.com/w8tTOuT.png" title="source: imgur.com" /> </div> <br /> <div align="center"> <img src="https://img.shields.io/github/languages/top/carlosmoronisud/Blogpessoal_spring?style=flat-square" /> <img src="https://img.shields.io/github/repo-size/carlosmoronisud/Blogpessoal_spring?style=flat-square" /> <img src="https://img.shields.io/github/languages/count/carlosmoronisud/Blogpessoal_spring?style=flat-square" /> <img src="https://img.shields.io/github/last-commit/carlosmoronisud/Blogpessoal_spring?style=flat-square" /> <img src="https://img.shields.io/github/issues/carlosmoronisud/Blogpessoal_spring?style=flat-square" /> <img src="https://img.shields.io/github/issues-pr/carlosmoronisud/Blogpessoal_spring?style=flat-square" /> <img src="https://img.shields.io/badge/status-construção-yellow" alt="Status: Em Construção"> </div> <br />
+1. Descrição
 <br />
-
-<div align="center">
-    <img src="https://i.imgur.com/w8tTOuT.png" title="source: imgur.com" /> 
-</div>
-
-<br />
-
-<div align="center">
-  <img src="https://img.shields.io/github/languages/top/rafaelq80/blogpessoal_spring_t82?style=flat-square" />
-  <img src="https://img.shields.io/github/repo-size/rafaelq80/blogpessoal_spring_t82?style=flat-square" />
-  <img src="https://img.shields.io/github/languages/count/rafaelq80/blogpessoal_spring_t82?style=flat-square" />
-  <img src="https://img.shields.io/github/last-commit/rafaelq80/blogpessoal_spring_t82?style=flat-square" />
-  <img src="https://img.shields.io/github/issues/rafaelq80/blogpessoal_spring_t82?style=flat-square" />
-  <img src="https://img.shields.io/github/issues-pr/rafaelq80/blogpessoal_spring_t82?style=flat-square" />
-  <img src="https://img.shields.io/badge/status-construção-yellow" alt="Status: Em Construção">
-
-</div>
-
-<br />
-
-## 1. Descrição
-
-<br />
-
-O **Blog Pessoal** é uma aplicação que permite que usuários publiquem, editem e visualizem postagens relacionadas a temas variados, de forma organizada e segura. Este projeto foi desenvolvido com fins educacionais, simulando uma aplicação real de blog para praticar conceitos de API REST com Java e Spring Boot.
+O Blog Pessoal é uma aplicação que permite que usuários publiquem, editem e visualizem postagens relacionadas a temas variados, de forma organizada e segura. Este projeto foi desenvolvido com fins educacionais, simulando uma aplicação real de blog para praticar conceitos de API REST com Java e Spring Boot.
 
 Entre os principais recursos que um blog pessoal oferece, destacam-se:
 
-1. Criação, edição e exclusão de postagens
-2. Associação de postagens a temas específicos
-3. Cadastro e autenticação de usuários
-4. Visualização de postagens por tema ou usuário
-5. Controle de acesso a operações sensíveis
+Criação, edição e exclusão de postagens
+
+Associação de postagens a temas específicos
+
+Cadastro e autenticação de usuários
+
+Visualização de postagens por tema ou usuário
+
+Controle de acesso a operações sensíveis
 
 <br />
-
-## 2. Sobre esta API
+2. Sobre esta API
+<br />
+A API do Blog Pessoal foi desenvolvida utilizando Java e o framework Spring, seguindo os princípios da Arquitetura MVC e REST. Ela oferece endpoints para o gerenciamento dos recursos Usuário, Postagem e Tema, permitindo a interação entre os usuários e os conteúdos publicados.
 
 <br />
+2.1. Principais funcionalidades da API:
+<br />
+Consulta, cadastro, login e atualização dos dados de usuários
 
-A API do Blog Pessoal foi desenvolvida utilizando **Java** e o **framework Spring**, seguindo os princípios da Arquitetura MVC e REST. Ela oferece endpoints para o gerenciamento dos recursos **Usuário**, **Postagem** e **Tema**, permitindo a interação entre os usuários e os conteúdos publicados.
+Consulta, criação e gerenciamento de temas para classificar postagens
+
+Criação, edição, listagem e remoção de postagens
+
+Associação de postagens a temas e autores
+
+Autenticação via token JWT para segurança nas requisições
 
 <br />
-
-### 2.1. Principais funcionalidades da API:
-
-<br />
-
-1. Consulta, cadastro, login e atualização dos dados de usuários
-2. Consulta, criação e gerenciamento de temas para classificar postagens
-3. Criação, edição, listagem e remoção de postagens
-4. Associação de postagens a temas e autores
-5. Autenticação via token JWT para segurança nas requisições
-
-<br />
-
-## 3. Diagrama de Classes
-
+3. Diagrama de Classes
 <br />
 
 O **Diagrama de Classes** é um modelo visual usado na programação orientada a objetos para representar a estrutura de um sistema. Ele exibe classes, atributos, métodos e os relacionamentos entre elas, como associações, heranças e dependências.
@@ -66,6 +43,7 @@ O **Diagrama de Classes** é um modelo visual usado na programação orientada a
 Esse diagrama ajuda a planejar e entender a arquitetura do sistema, mostrando como as entidades interagem e se conectam. É amplamente utilizado nas fases de design e documentação de projetos.
 
 <br />
+
 
 ```mermaid
 classDiagram
@@ -169,10 +147,10 @@ Para executar os códigos localmente, você precisará:
 
 ### 7.1. Importando o Projeto
 
-1. Clone o repositório do Projeto [Blog Pessoal](https://github.com/rafaelq80/blogpessoal_spring_t82) dentro da pasta do *Workspace* do STS
+1. Clone o repositório do Projeto [Blog Pessoal](https://github.com/carlosmoronisud/Blogpessoal_spring.git) dentro da pasta do *Workspace* do STS
 
 ```bash
-git clone https://github.com/rafaelq80/blogpessoal_spring_t82.git
+git clone https://github.com/carlosmoronisud/Blogpessoal_spring.git
 ```
 
 2. **Abra o STS** e selecione a pasta do *Workspace* onde você clonou o repositório do projeto
@@ -247,9 +225,14 @@ Este repositório é parte de um projeto educacional, mas contribuições são s
 
 <br />
 
-##  10. Contato
+##  10. Agradecimentos
+Gostaria de expressar minha sincera gratidão ao meu professor  [**Rafael Queiroz**](https://github.com/rafaelq80), que foi fundamental no meu aprendizado de Java e no desenvolvimento deste projeto. Por meio deste blog pessoal, pude aplicar na prática os conhecimentos adquiridos em sala e construir uma API completa com Spring Boot. Muito obrigado pela dedicação e por compartilhar seu conhecimento de forma tão acessível e inspiradora!
+
+
+
+##  11. Contato
 
 <br />
 
-Desenvolvido por [**Rafael**](https://github.com/rafaelq80)
+Desenvolvido por [**Carlos Moroni**](https://github.com/carlosmoronisud)
 Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
